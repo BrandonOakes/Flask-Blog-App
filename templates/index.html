@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>MyJournal</title>
+        <link href="https://fonts.googleapis.com/css?family=Cousine:400" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Work+Sans:600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="/static/normalize.css">
+        <link rel="stylesheet" href="/static/site.css">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="site-header">
+                    {% if current_user.is_authenticated %}
+                      <a class="button icon-right" href="{{ url_for('add_entry') }}"><span>New Entry</span> <i class="material-icons">add</i></a>
+                      <a href="{{ url_for('logout') }}" title="Log Out">Log out</a>
+                    {% else %}
+                    <a class="logo" href="index.html"><i class="material-icons">library_books</i></a>
+                    <a class='button icon-right' href="{{ url_for('register') }}">Register</a>
+                    <a class='button icon-right' href="{{ url_for('login') }}">Log in</a>
+                    {% endif %}
+
+                </div>
+            </div>
+        </header>
+        <section>
+            <div class="container">
+                <div class="entry-list">
+                    <article>
+                    {% if posts %}
+                      {% for post in posts %}
+                        <h2><a href="{{ url_for('details', post=post.title) }}">{{ post.title }}</a></h2>
+                        <time datetime="2016-01-31">{{ post.date.strftime('%B %d %Y') }}<br></time>
+                      {% endfor %}
+                    {% endif %}
+
+                    </article>
+
+
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div>
+                &copy; MyJournal
+            </div>
+        </footer>
+    </body>
+</html>
