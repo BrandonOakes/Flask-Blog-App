@@ -14,8 +14,8 @@
         <header>
             <div class="container">
                 <div class="site-header">
-                    <a class="logo" href="{{ url_for('list') }}"><i class="material-icons">library_books</i></a>
-                    <a class="button icon-right" href="new.html"><span>New Entry</span> <i class="material-icons">add</i></a>
+                    <a  href="{{ url_for('logout') }}"><i>Logout</i></a>
+                    <a class="button icon-right" href="{{ url_for('list') }}"><span>Home</span> <i class="material-icons">add</i></a>
                 </div>
             </div>
         </header>
@@ -24,9 +24,13 @@
                 <div class="entry-list single">
                     <article>
                       {% for detail in entry %}
-                        <h2>{{detail.title}}</h2>
-                        <time datetime="2016-01-31">{{ detail.date}}</time>
+                        <h2> Journal Title: </h2>
+                        <h3>{{detail.title}}</h3>
                         <div class="entry">
+                          <h3>Entry date: </h3>
+                          <p>{{ detail.date}}</p>
+                       </div>
+                       <div class="entry">
                             <h3>Time Spent: </h3>
                             <p>{{detail.time}}</p>
                         </div>
@@ -46,7 +50,12 @@
             </div>
             <div class="edit">
                {% for detail in entry %}
+                  {% if detail.user_id == current_user %}
                 <p><a href="{{ url_for('edit', post=detail.title) }}">Edit Entry</a></p>
+                <p><a href="{{ url_for('delete', post=detail.title) }}">Delete Entry</a></p>
+                  {% else %}
+                  <p>Only the user that posted this can edit it</p>
+                  {% endif %}
                 {% endfor %}
             </div>
         </section>
