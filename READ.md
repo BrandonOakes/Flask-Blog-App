@@ -5,7 +5,7 @@ This project is from the python web development tech degree at TeamTreehouse. Th
 
 Prerequisites
 
-pip freeze > requirements.txt
+pip freeze > requirements.txt<br>
 pip install -r requirements.txt
 
 Getting Started
