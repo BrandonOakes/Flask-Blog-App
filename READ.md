@@ -10,7 +10,7 @@ pip install -r requirements.txt
 
 Getting Started
 
-In your command line you will need to enter the following in a new directory:
-pip freeze > requirements.txt
-pip install -r requirements.txt
+In your command line you will need to enter the following in a new directory:<br>
+pip freeze > requirements.txt<br>
+pip install -r requirements.txt<br>
 python3 app.py
